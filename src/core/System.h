@@ -5,14 +5,15 @@
 class System
 {
 public:
-	System() : m_strSystemName("Default System") {}
+	System(const std::string &name) : m_strSystemName(name) {}
 	virtual ~System() {}
 
 	virtual void Init() = 0;
-	virtual void Update(float dt, std::vector<Entity> &entities) = 0;
+	virtual void Update(float dt, std::vector<Entity*> &entities) = 0;
+	virtual void Shutdown() = 0;
 
-	std::string GetName() const { return m_strSystemName; }
+	const std::string& GetName() const { return m_strSystemName; }
 	
 protected:
-	std::string m_strSystemName;
+	const std::string m_strSystemName;
 };
